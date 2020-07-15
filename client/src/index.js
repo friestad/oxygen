@@ -1,15 +1,20 @@
 import React from "react";
+import Router from "react";
 import ReactDOM from "react-dom";
+
 import "./index.scss";
-import { Home } from "./pages/Home";
-import { NavMenu } from './components/NavMenu';
 import * as serviceWorker from "./serviceWorker";
+
+import { Home } from "./pages/Home";
+
+import { NavMenu } from './components/NavMenu';
 import { DisplayMapClass } from "./components/DisplayMapClass";
 
 ReactDOM.render(
 	<div id="page">
 		<div id="header">
 			<NavMenu />
+			{console.log('it still works!')}
 		</div>
 
 		<Home />
