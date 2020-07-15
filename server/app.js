@@ -10,14 +10,12 @@ app.use(cors());
 app.use(bodyParser());
 
 const eventController = require('./controllers/eventController');
-
-app.get('/', (req, res) => {
-  res.json({
-    Message: 'Hello',
-  });
-});
+const userController = require('./controllers/userController');
 
 app.post('/event', eventController.createEvent);
+app.get('/event', eventController.getEvents);
+app.post('/signup', userController.createUser);
+app.post('/login', userController.login);
 
 app.listen(PORT, HOST);
 console.log(`Listening on http://${HOST}:${PORT}`);

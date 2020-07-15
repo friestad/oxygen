@@ -6,12 +6,10 @@ const Model = mongoose.model;
 const EventSchema = new Schema({
   name: { type: String },
   start: {
-    latitude: { type: Number },
-    longitude: { type: Number },
+    coordinates: [Number]
   },
   end: {
-    latitude: { type: Number },
-    longitude: { type: Number },
+    coordinates: [Number]
   },
   startTime: { type: Date },
   participants: [String],

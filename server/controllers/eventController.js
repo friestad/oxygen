@@ -4,7 +4,7 @@
 const Event = require('../models/eventModel');
 
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://mongo:27017';
+const mongoDB = 'mongodb://root:example@mongo:27017';
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -19,12 +19,21 @@ exports.createEvent = function (req, res) {
     startTime: new Date(),
     participants: 0,
   });
-  event.save(function(err) {
+  event.save(function (err) {
     if (err) {
       throw err;
     }
     res.json({
-      message: 'Event created'
-    })
+      message: 'Event created',
+    });
+  });
+};
+
+exports.getEvents = function (req, res) {
+  Event.find({}, function (err, events) {
+    if (err) {
+      return err;
+    }
+    res.json(events);
   })
 };
