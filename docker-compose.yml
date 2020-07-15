@@ -1,6 +1,12 @@
 version: '3.3'
 services:
-  web:
-    build: .
+  node-server:
+    container_name: node-server
+    build:
+        context: ./server
+        dockerfile: Dockerfile
+    volumes:
+        - ./server/:/usr/src/app/server
+        - /app/node_modules
     ports:
       - "5000:5000"
