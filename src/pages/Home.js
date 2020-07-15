@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Home.scss";
 import { NavMenu } from "../components/NavMenu";
+import { DisplayMapClass } from "../components/DisplayMapClass";
 
 import {
 	Tile,
@@ -15,8 +16,8 @@ import {
 } from "carbon-components-react";
 
 function ProtestInformationDisplay() {
-	const eventName: String = "Sample Protest";
-	const startTime: String = "09 Aug 2020 @ 3:45p";
+	const eventName = "Sample Protest";
+	const startTime = "09 Aug 2020 @ 3:45p";
 	return (
 		<ExpandableTile>
 			<TileAboveTheFoldContent>
@@ -66,7 +67,7 @@ function ProtestInformationDisplay() {
 	);
 }
 
-const protestList: object[] = [];
+const protestList = [];
 
 function RenderProtestList() {
 	if (protestList.length === 0) {
@@ -81,8 +82,8 @@ function RenderProtestList() {
 }
 
 function addProtest() {
-	const eventName: String = "Sample Protest";
-	const startTime: String = "09 Aug 2020 @ 3:45p";
+	const eventName = "Sample Protest";
+	const startTime= "09 Aug 2020 @ 3:45p";
 	let protest = (
 		<ExpandableTile>
 			<TileAboveTheFoldContent>
@@ -153,10 +154,12 @@ export class Home extends React.Component {
 
 				<div id="page-content">
 					<ProtestInformationDisplay />
+					<DisplayMapClass />
 					{/* <div className="protest-list-container">
 						<RenderProtestList />
 					</div> */}
 				</div>
+				
 			</>
 		);
 	}

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import { Home } from "./pages/Home";
 import * as serviceWorker from "./serviceWorker";
+import { DisplayMapClass } from "./components/DisplayMapClass";
 
 ReactDOM.render(
 	<div id='page'>
