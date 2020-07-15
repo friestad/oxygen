@@ -30,9 +30,13 @@ exports.createEvent = function (req, res) {
 };
 
 exports.getEvents = function (req, res) {
-  const long = req.body.long;
-  const lat = req.body.lat;
-  
+  const long = Number(req.query.long);
+  const lat = Number(req.query.lat);
+
+  if (typeof long === 'undefined' || typeof lat === 'undefined') {
+    throw new Error('Latitude or longitude not specified');
+  }
+
   Event.aggregate(
     [
       {
@@ -51,11 +55,4 @@ exports.getEvents = function (req, res) {
       }
       res.send(data);
     });
-  
-  // Event.find({}, function (err, events) {
-  //   if (err) {
-  //     return err;
-  //   }
-  //   res.json(events);
-  // })
 };
