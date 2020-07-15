@@ -5,7 +5,7 @@ import { Home } from "./pages/Home";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-	<div>
+	<div id='page'>
 		<Home />
 	</div>,
 	document.getElementById("root")

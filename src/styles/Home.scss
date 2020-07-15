@@ -1,0 +1,54 @@
+@import "node_modules/carbon-components/scss/globals/scss/styles.scss";
+
+$header-height: 3rem;
+
+#header {
+	position: relative;
+	height: $header-height;
+	width: auto;
+}
+
+#page-content {
+	height: calc(100vh - #{$header-height});
+	width: 100vw;
+	position: relative;
+	background-color: $ui-01;
+}
+
+.protest-basic-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.protest-heading {
+	@include carbon--type-style("productive-heading-04");
+}
+
+.protest-subheading {
+	@include carbon--type-style("body-short-02");
+}
+
+.bx--tile-content__below-the-fold {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.protest-expanded-info {
+}
+
+.bx--structured-list {
+	min-width: 100%;
+}
+
+.protest-list-container {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.no-protests {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
