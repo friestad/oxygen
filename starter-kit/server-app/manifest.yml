@@ -1,6 +1,0 @@
-applications:
-- name: ibm-hackathon-2020-spaghetti
-  command: npm start
-  path: .
-  memory: 128M
-  instances: 1
