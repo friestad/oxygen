@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  node-server:
+    container_name: node-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/:/usr/src/app/server
+      - /usr/src/app/server/node_modules
+    ports:
+      - '5000:5000'
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
