@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/NavMenu.scss';
 
 import {
 	HeaderContainer,
@@ -39,12 +40,6 @@ export class NavMenu extends React.Component {
 										expanded={isSideNavExpanded}
 									>
 										<SideNavItems>
-											<SideNavLink
-												renderIcon={ChevronRight32}
-												href="javascript:void(0)"
-											>
-												Home
-											</SideNavLink>
 											<SideNavLink
 												renderIcon={ChevronRight32}
 												href="javascript:void(0)"
