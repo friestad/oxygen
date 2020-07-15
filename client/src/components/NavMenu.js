@@ -8,13 +8,10 @@ import {
 	HeaderName,
 	SideNav,
 	SideNavItems,
-	SideNavLink,
 	SkipToContent,
 } from "carbon-components-react";
 
 import { Link } from "react-router-dom";
-
-import { ChevronRight32 } from "@carbon/icons-react";
 
 export class NavMenu extends React.Component {
 	render() {
@@ -42,50 +39,39 @@ export class NavMenu extends React.Component {
 										expanded={isSideNavExpanded}
 									>
 										<SideNavItems>
-											<Link to="/home">
-												<SideNavLink
-													renderIcon={ChevronRight32}
-													href="javascript:void(0)"
-												>
-													Home
-												</SideNavLink>
+											<Link
+												to="/home"
+												className="bx--side-nav__link"
+											>
+												Home
 											</Link>
-											<Link to="/resources">
-												<SideNavLink
-													renderIcon={ChevronRight32}
-													href="javascript:void(0)"
-												>
-													Resources
-												</SideNavLink>
+											<Link
+												to="/resources"
+												className="bx--side-nav__link"
+											>
+												Resources
 											</Link>
-											<Link to="/communicate">
-												<SideNavLink
-													renderIcon={ChevronRight32}
-													href="javascript:void(0)"
-												>
-													Communicate
-												</SideNavLink>
+											<Link
+												to="/communicate"
+												className="bx--side-nav__link"
+											>
+												Communicate
 											</Link>
-											<Link to="/manageEvents">
-												<SideNavLink
-													renderIcon={ChevronRight32}
-													href="javascript:void(0)"
-												>
-													Manage Events
-												</SideNavLink>
+											<Link
+												to="/manageEvents"
+												className="bx--side-nav__link"
+											>
+												Manage Events
 											</Link>
-											<Link to='/causes'>
-												<SideNavLink
-													renderIcon={ChevronRight32}
-													href="javascript:void(0)"
-												>
-													Causes
-												</SideNavLink>
+											<Link
+												to="/causes"
+												className="bx--side-nav__link"
+											>
+												Causes
 											</Link>
 										</SideNavItems>
 									</SideNav>
 								</Header>
-								{/* <StoryContent /> */}
 							</>
 						)}
 					/>

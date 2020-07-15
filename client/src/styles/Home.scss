@@ -50,7 +50,7 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	position: absolute;
 	z-index: 5;
 	width: 100%;
-	box-shadow: 0 4px 12px 0px $shadow-color;
+	box-shadow: 0 4px 12px $shadow-color;
 }
 
 .no-protests {
@@ -59,4 +59,25 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.protest-box-item {
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+}
+
+.join-protest-bt {
+	outline-offset: -2px;
+	outline: 1px solid white;
+	padding: 0px; // reset the <Button /> default padding
+	display: flex;
+	justify-content: center;
+	max-width: 10%;
+	min-width: 10%;
+}
+
+.bt-text {
+	text-align: center;
+	vertical-align: middle;
 }
