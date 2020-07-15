@@ -1,5 +1,5 @@
 applications:
-- name: solution-starter-kit-cooperation-2020-server
+- name: ibm-hackathon-2020-spaghetti
   command: npm start
   path: .
   memory: 128M
