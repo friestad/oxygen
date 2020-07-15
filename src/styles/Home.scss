@@ -1,6 +1,7 @@
 @import "node_modules/carbon-components/scss/globals/scss/styles.scss";
 
 $header-height: 3rem;
+$shadow-color: rgba(0, 0, 0, 0.25);
 
 #header {
 	position: relative;
@@ -43,6 +44,13 @@ $header-height: 3rem;
 .protest-list-container {
 	height: 100%;
 	overflow-y: scroll;
+}
+
+.protest-dropdown {
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	box-shadow: 0 4px 12px 0px $shadow-color;
 }
 
 .no-protests {

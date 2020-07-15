@@ -2,11 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import { Home } from "./pages/Home";
+import { NavMenu } from './components/NavMenu';
 import * as serviceWorker from "./serviceWorker";
 import { DisplayMapClass } from "./components/DisplayMapClass";
 
 ReactDOM.render(
-	<div id='page'>
+	<div id="page">
+		<div id="header">
+			<NavMenu />
+		</div>
+
 		<Home />
 	</div>,
 	document.getElementById("root")
