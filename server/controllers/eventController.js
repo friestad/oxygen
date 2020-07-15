@@ -14,10 +14,10 @@ exports.createEvent = function (req, res) {
   const body = req.body;
   let event = new Event({
     name: body.name,
-    start: body.start,
-    end: body.end,
-    startTime: new Date(),
-    participants: 0,
+    start_location: body.startLocation,
+    end_location: body.endLocation,
+    start_time: new Date(body.startTime),
+    participants: [],
   });
   event.save(function (err) {
     if (err) {
@@ -30,10 +30,32 @@ exports.createEvent = function (req, res) {
 };
 
 exports.getEvents = function (req, res) {
-  Event.find({}, function (err, events) {
-    if (err) {
-      return err;
-    }
-    res.json(events);
-  })
+  const long = req.body.long;
+  const lat = req.body.lat;
+  
+  Event.aggregate(
+    [
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: [long, lat]
+          },
+          distanceField: "dist.calculated",
+          spherical: true
+        }
+      }
+    ], (err, data) => {
+      if(err) {
+        throw err;
+      }
+      res.send(data);
+    });
+  
+  // Event.find({}, function (err, events) {
+  //   if (err) {
+  //     return err;
+  //   }
+  //   res.json(events);
+  // })
 };
