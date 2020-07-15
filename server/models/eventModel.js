@@ -16,6 +16,19 @@ const pointSchema = new Schema({
   }
 });
 
+const polygonSchema = new Schema({
+  type: {
+    type: String,
+    enum: ['Polygon'],
+    required: true
+  },
+  coordinates: {
+    type: [[[Number]]],
+    required: true
+  }
+  
+})
+
 const EventSchema = new Schema({
   name: { type: String },
   start_location: {
@@ -23,10 +36,17 @@ const EventSchema = new Schema({
     index: '2dsphere', // Used to sort by nearest start location
     required: true
   },
+
   end_location: {
     type: pointSchema,
     required: true
   },
+
+  center_area: {
+    type: polygonSchema,
+    required: true
+  },
+
   start_time: { type: Date },
   participants: [String],
 });
