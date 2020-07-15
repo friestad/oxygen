@@ -4,9 +4,9 @@
 
 const Center = require('../util/getCenterArea');
 const Event = require('../models/eventModel');
-
+const keys = require('../config/keys');
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://root:example@mongo:27017';
+const mongoDB = keys.mongoURL;
 
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });

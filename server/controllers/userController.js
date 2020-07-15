@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-const mongoDB = 'mongodb://root:example@mongo:27017';
+
+const mongoDB = keys.mongoURL;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
