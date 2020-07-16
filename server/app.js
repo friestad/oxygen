@@ -13,11 +13,18 @@ const eventController = require('./controllers/eventController');
 const userController = require('./controllers/userController');
 const resourceController = require('./controllers/resourceController');
 
-app.post('/event', eventController.createEvent);
-app.get('/event', eventController.getEvents);
-app.post('/signup', userController.createUser);
-app.post('/login', userController.login);
-app.get('/nearby/businesses', resourceController.getNearbyBusinesses);
+app.get('/event/all/', eventController.getEvents);
+app.get('/event/', eventController.getEvent);
+app.get('/user/all/', userController.getUsers);
+app.get('/user/events/', userController.getEvents);
+app.get('/nearby/businesses/', resourceController.getNearbyBusinesses);
+
+app.post('/event/create-event/', eventController.createEvent);
+app.post('/event/delete-event/', eventController.deleteEvent);
+app.post('/user/signup/', userController.createUser);
+app.post('/user/login/', userController.login);
+app.post('/user/delete-account/', userController.deleteUser);
+
 
 app.listen(PORT, HOST);
 console.log(`Listening on http://${HOST}:${PORT}`);
