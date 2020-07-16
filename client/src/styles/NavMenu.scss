@@ -1,4 +1,28 @@
+@import "node_modules/carbon-components/scss/globals/scss/styles.scss";
+
 .bx--side-nav__link,
 .bx--side-nav__link:visited {
-	color: black;
+	color: white;
+	@include carbon--type-style("body-short-01");
+}
+
+.modal-trigger-container {
+	justify-content: left;
+
+	&.button {
+		width: 100%;
+	}
+}
+
+.modal-trigger-container > form {
+	width: 100%;
+}
+
+.bx--form button.bx--btn.bx--btn--primary {
+	width: 100%;
+	@include carbon--type-style("body-short-01");
+}
+
+.bx--side-nav {
+	background-color: #232323;
 }

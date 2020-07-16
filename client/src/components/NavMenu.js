@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/NavMenu.scss";
+import { ManageEvents} from '../pages/ManageEvents';
 
 import {
 	HeaderContainer,
@@ -24,15 +25,15 @@ export class NavMenu extends React.Component {
 							onClickSideNavExpand,
 						}) => (
 							<>
-								<Header aria-label="Placeholder name">
+								<Header aria-label="IBM Oxygen">
 									<SkipToContent />
 									<HeaderMenuButton
 										aria-label="Open menu"
 										onClick={onClickSideNavExpand}
 										isActive={isSideNavExpanded}
 									/>
-									<HeaderName href="#" prefix="Placeholder">
-										[Name]
+									<HeaderName href="#" prefix="IBM">
+										[Oxygen]
 									</HeaderName>
 									<SideNav
 										aria-label="Side navigation"
@@ -52,17 +53,12 @@ export class NavMenu extends React.Component {
 												Communicate
 											</Link>
 											<Link
-												to="/manageEvents"
-												className="bx--side-nav__link"
-											>
-												Manage Events
-											</Link>
-											<Link
 												to="/causes"
 												className="bx--side-nav__link"
 											>
 												Causes
 											</Link>
+											<ManageEvents className="bx--side-nav__link" />
 										</SideNavItems>
 									</SideNav>
 								</Header>

@@ -19,10 +19,18 @@ export class ProtestInformationDisplay extends React.Component {
 		super(props);
 	}
 
-	render() {
 
+
+	render() {
 		return (
 			<div className="protest-dropdown">
+				<Button
+					size="small"
+					className="exit-protest-bt"
+					onClick={() => {this.props.handleExit()}}
+				>
+					Exit Protest
+				</Button>
 				<ExpandableTile>
 					<TileAboveTheFoldContent>
 						<div className="protest-basic-info">

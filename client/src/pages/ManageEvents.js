@@ -2,6 +2,7 @@ import React from "react";
 import { DisplayMapClass } from "../components/DisplayMapClass";
 import getLocation from "../utils/getLocation";
 import { postEvent } from "../utils/postEvent";
+import '../styles/ManageEvents.scss';
 import {
 	Form,
 	FormGroup,
@@ -147,9 +148,9 @@ export class ManageEvents extends React.Component {
 
 	render() {
 		return (
-			<div className="page-content">
-				{this.modalTrigger()}
-			</div>
+				<div className="modal-trigger-container">
+					{this.modalTrigger()}
+				</div>
 		);
 	}
 }
