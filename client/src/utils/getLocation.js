@@ -1,5 +1,5 @@
-export default async function getNearby(search) {
-    const url = `http://localhost:5000/nearby/businesses/?searchString=${search}`;
+export default async function getLocation(search) {
+    const url = `http://localhost:5000/location/address/?searchString=${search}`;
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -8,6 +8,7 @@ export default async function getNearby(search) {
         },
       })
         .then((response) => {
+          
           return response;
         })
         .catch((error) => {
