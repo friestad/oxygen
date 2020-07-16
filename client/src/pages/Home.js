@@ -266,9 +266,9 @@ export class Home extends React.Component {
 					{this.generateMap()}
 					<Resources />
 
-					<div className="protest-list-container">
+					{/* <div className="protest-list-container">
 						{this.generateMenu()}
-					</div>
+					</div> */}
 				</div>
 			</>
 		);
