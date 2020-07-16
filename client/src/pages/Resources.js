@@ -1,13 +1,20 @@
 import React from "react";
 import "../styles/Resources.scss";
-import '../utils/getNearby';
+import "../utils/getNearby";
 
-import { Tabs, Tab, ClickableTile } from "carbon-components-react";
+import {
+	Tabs,
+	Tab,
+	ClickableTile,
+	SkeletonPlaceholder,
+} from "carbon-components-react";
 import getNearby from "../utils/getNearby";
 
-const localBusinesses = [];
-const protestSupporters = [];
-const allResources = [];
+let localBusinesses = [];
+let protestSupporters = [];
+let allResources = [];
+
+const response = [];
 
 function addLocalBusiness(name, type, distance) {
 	const business = (
@@ -15,7 +22,9 @@ function addLocalBusiness(name, type, distance) {
 			<div className="resource-entry">
 				<span className="resource-name">{name}</span>
 				<span className="resource-body">{type}</span>
-				<span className="resource-body resource-distance">{distance}</span>
+				<span className="resource-body resource-distance">
+					{distance}
+				</span>
 			</div>
 		</ClickableTile>
 	);
@@ -30,7 +39,9 @@ function addProtestSupporter(name, supplies, distance) {
 			<div className="resource-entry">
 				<span className="resource-name">{name}</span>
 				<span className="resource-body">{supplies}</span>
-				<span className="resource-body resource-distance">{distance}</span>
+				<span className="resource-body resource-distance">
+					{distance}
+				</span>
 			</div>
 		</ClickableTile>
 	);
@@ -64,21 +75,38 @@ function renderAllResources() {
 }
 
 export class Resources extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { apiData: [] };
+	}
+
+	rustonLat = 32.523205;
+	rustonLong = -92.637924;
+
+	vcuLat = 37.5468;
+	vcuLong = -77.45202;
 
 	componentDidMount() {
-		getNearby(32.523205, -92.637924).then((resp) => {
+		getNearby(this.vcuLat, this.vcuLong).then((resp) => {
 			resp.forEach((element) => {
-				console.log(element.name, element.categories[0], `${element.distance} ft`);
-			})
+				response.push(element);
+			});
+			this.setState({apiData: response})
 		});
 	}
-	render() {
-		// addLocalBusiness("CVS", "Convenience Store", "400 feet");
-		// addLocalBusiness("Walgreens", "Convenience Store", "670 feet");
-		// addLocalBusiness("Some Store", "Convenience Store", "1.2 miles");
 
+	render() {
 		addProtestSupporter("John Doe", "Water & Snacks", "distance?");
 		addProtestSupporter("Some Name", "Gatorade", "distance?");
+
+		response.forEach((place) => {
+			addLocalBusiness(
+				place.name,
+				place.categories[0].title,
+				place.distance
+			);
+			console.log("added ", place.name);
+		});
 
 		return (
 			<div className="resource-list-container">

@@ -1,4 +1,3 @@
-import axios from 'axios';
 export default async function getNearby(latitude, longitude) {
   const url = `http://localhost:5000/nearby/businesses/?lat=${latitude}&long=${longitude}`;
   try {
