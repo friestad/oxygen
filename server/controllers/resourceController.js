@@ -1,6 +1,7 @@
 const axios = require('axios');
 const keys = require('../config/keys');
-const { console } = require('window-or-global');
+
+// This gets all nearby businesses
 exports.getNearbyBusinesses = async function (req, res) {
   const lat = req.query.lat;
   const long = req.query.long;
