@@ -32,6 +32,7 @@ export class ManageEvents extends React.Component {
 	let str = this.state.addressField;
 	let newstr = str.replace(/\s/g, '+');
 	console.log(newstr);
+	
 	}
     render(){
         return(<div className="page-content"><Form>
