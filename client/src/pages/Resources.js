@@ -105,7 +105,6 @@ export class Resources extends React.Component {
 				place.categories[0].title,
 				place.distance
 			);
-			console.log("added ", place.name);
 		});
 
 		return (
