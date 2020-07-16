@@ -227,6 +227,153 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Add Participant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/event/add-participant/?username=MrOceanMan2&eventname=event2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						"add-participant",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "MrOceanMan2"
+						},
+						{
+							"key": "eventname",
+							"value": "event2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Resource",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/resource/post?lat=32.529716&long=-92.629579&username=MrOceanMan2&name=Milk",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"resource",
+						"post"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "32.529716"
+						},
+						{
+							"key": "long",
+							"value": "-92.629579"
+						},
+						{
+							"key": "username",
+							"value": "MrOceanMan2"
+						},
+						{
+							"key": "name",
+							"value": "Milk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Resources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Resource",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/resource/delete?name=Milk&username=MrOceanMan2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"resource",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Milk"
+						},
+						{
+							"key": "username",
+							"value": "MrOceanMan2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Resources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/user/resources?name=Milk&username=MrOceanMan2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Milk"
+						},
+						{
+							"key": "username",
+							"value": "MrOceanMan2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Businesses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
