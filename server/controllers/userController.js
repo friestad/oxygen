@@ -10,6 +10,7 @@ const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const { createEvent } = require('./eventController');
+const Resource = require('../models/resourceModel');
 
 const mongoDB = keys.mongoURL;
 
@@ -102,8 +103,8 @@ exports.login = async function (req, res, next) {
     username: user username
 */
 exports.deleteUser = function(req, res){
-  User.deleteOne({username: req.query.username}, (err) =>{if(err){res.send(err)}});
-  Event.deleteMany({host_username: req.query.username}, (err) => {if(err){res.send(err)}});
+  User.deleteOne({username: req.query.username}, (err) =>{if(err) throw err});
+  Event.deleteMany({host_username: req.query.username}, (err) => {if(err) throw err});
 
   res.json({message: `User ${req.query.username} successfully deleted`});
 }
@@ -115,11 +116,27 @@ exports.deleteUser = function(req, res){
 */
 exports.getEvents = function(req, res){
   Event.find({hostUsername: req.username}, (err, events) => {
-    if(err) {res.send(error);}
+    if(err) throw err;
     res.send(events);
   })
 }
 
+/*
+  Gets all resources a user is hosting
+  Query params:
+    username: host username
+    name: resource name
+*/
+exports.getResources = function(req, res){
+  Resource.find({host: req.query.username, name: req.query.name}, (err, resources) => {
+    if(err) throw err;
+    res.send(resources);
+  })
+}
+
+/*
+  Returns all users
+*/
 exports.getUsers = function(req, res){
-  User.find({}, (err, users) => {res.send(users)});
+  User.find({}, (err, users) => {if(err) throw err; res.send(users)});
 }
