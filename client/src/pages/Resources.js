@@ -77,7 +77,7 @@ function renderAllResources() {
 export class Resources extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { apiData: [] };
+		this.state = { businesses: [], supporters: [] };
 	}
 
 	rustonLat = 32.523205;
@@ -91,7 +91,7 @@ export class Resources extends React.Component {
 			resp.forEach((element) => {
 				response.push(element);
 			});
-			this.setState({apiData: response})
+			this.setState({businesses: response})
 		});
 	}
 
@@ -99,7 +99,7 @@ export class Resources extends React.Component {
 		addProtestSupporter("John Doe", "Water & Snacks", "distance?");
 		addProtestSupporter("Some Name", "Gatorade", "distance?");
 
-		response.forEach((place) => {
+		this.state.businesses.forEach((place) => {
 			addLocalBusiness(
 				place.name,
 				place.categories[0].title,
