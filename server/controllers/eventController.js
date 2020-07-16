@@ -103,9 +103,6 @@ exports.getEvent = function(req, res){
 */
 exports.deleteEvent = function(req, res){
   let event = Event.findOneAndDelete({name: req.query.eventname, host_username: req.query.username}, (err) => {if(err){res.send(err)}});
-  User.findOneAndUpdate({username: req.query.username}, (err, user) => {
-    user.events = user.events.filter((value, index, arr) => value != event._id)
-  });
 
   res.json({message: `Event ${req.query.eventname} successfully deleted` });
 }
