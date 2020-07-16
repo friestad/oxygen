@@ -19,10 +19,11 @@ import {
 export class ManageEvents extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { addressField: '', addressField2: '' };
+    this.state = { addressField: '', addressField2: '', name: '' };
     this.changeAddressField = this.changeAddressField.bind(this);
     this.stringChange = this.stringChange.bind(this);
     this.changeAddressField2 = this.changeAddressField2.bind(this);
+    this.changeName = this.changeName.bind(this);
   }
   changeAddressField(event) {
     console.log(this.state);
@@ -32,7 +33,12 @@ export class ManageEvents extends React.Component {
     console.log(this.state);
     this.setState({ addressField2: event.target.value });
   }
+  changeName(event) {
+    console.log(this.state);
+    this.setState({ name: event.target.value});
+  }
   async stringChange() {
+    let str3 = this.state.name;
     let str = this.state.addressField;
     let newstr = str.replace(/\s/g, '+');
     let a = await getLocation(newstr);
@@ -47,8 +53,11 @@ export class ManageEvents extends React.Component {
     let end = [
       b[0].Location.DisplayPosition.Longitude,
       b[0].Location.DisplayPosition.Latitude,
+
+    
     ];
-	postEvent("Test Event", "Test Host", start, end, 'July 16, 2020 14:00:00');
+    
+	postEvent(str3, "Test Host", start, end, 'July 16, 2020 14:00:00');
     console.log(start, end);
   }
 
@@ -90,7 +99,14 @@ export class ManageEvents extends React.Component {
             </FormGroup>
                         
             <FormGroup>
-                          
+                      <TextInput
+                helperText='Protest Name'
+                id='test2'
+                invalidText='Invalid error message.'
+                labelText='Protest Name'
+                placeholder='Protest Name Here'
+                onChange={this.changeName}
+              />  
               <TextArea
                 cols={50}
                 helperText='Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)'
