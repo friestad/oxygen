@@ -26,23 +26,28 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 */
 exports.createEvent = function (req, res) {
   let body = req.body;
-  let event = new Event({
-    name: body.name,
-    host_username: body.hostUsername,
-    start_location: body.startLocation,
-    end_location: body.endLocation,
-    start_time: new Date(body.startTime),
-    participants: [],
-  });
 
-  event.save(function (err) {
-    if (err) {
-      throw err;
+  Event.find({name: body.name}, {host_username: body.hostUsername}, (err, events) => {
+    if(err) throw err;
+    if(events.length > 0) res.json({message: `Event named ${body.name} already exists for user ${body.username}`})
+    else{
+      let event = new Event({
+        name: body.name,
+        host_username: body.hostUsername,
+        start_location: body.startLocation,
+        end_location: body.endLocation,
+        start_time: new Date(body.startTime),
+        participants: [],
+      });
+    
+      event.save(function (err) {
+        if (err) {
+          throw err;
+        }
+        res.json({message: `Event ${req.body.name} successfully added to user ${req.body.hostUsername}`});
+      });
     }
-    console.log("event created")
-  });
-
-  res.json({message: `Event ${req.body.name} successfully added to user ${req.body.hostUsername}`});
+  })
 };
 
 /* 
@@ -91,6 +96,7 @@ exports.getEvents = function (req, res) {
 */
 exports.getEvent = function(req, res){
   Event.findOne({name: req.query.name, host_username: req.query.username}, (err, event) => {
+    if(err) throw err;
     res.send(event);
   })
 }
@@ -102,7 +108,25 @@ exports.getEvent = function(req, res){
     eventname: event name
 */
 exports.deleteEvent = function(req, res){
-  let event = Event.findOneAndDelete({name: req.query.eventname, host_username: req.query.username}, (err) => {if(err){res.send(err)}});
-
+  Event.deleteOne({name: req.query.eventname, host_username: req.query.username}, (err) => {if(err) throw err});
   res.json({message: `Event ${req.query.eventname} successfully deleted` });
+}
+
+/*
+  Adds participant username
+  Query keys:
+    username: participant username
+    eventname: event name
+*/
+exports.addParticipant = function(req, res){
+  Event.find({name: req.query.eventname, participants: req.query.username}, (err, events) => {
+    if(err) throw err;
+    if(events.length > 0) res.json({message: "Participant already registered for event"})
+    else{
+      Event.updateOne({name: req.query.eventname}, {$push: {participants: req.query.username}}, (err) => {
+        if(err) throw err;
+        res.json({message: "Participant successfully added"})
+      });
+    }
+  })
 }
