@@ -32,7 +32,8 @@ const polygonSchema = new Schema({
 const EventSchema = new Schema({
   name: { type: String },
   host_username: { type: String },
-  
+  start_address: { type: String },
+  end_address: { type: String},
   start_location: {
     type: pointSchema,
     index: '2dsphere', // Used to sort by nearest start location
