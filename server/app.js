@@ -19,10 +19,6 @@ app.get('/event/', eventController.getEvent);
 app.get('/user/all/', userController.getUsers);
 app.get('/user/events/', userController.getEvents);
 app.get('/location/address', locationController.searchAddress)
-app.get('/event/all', eventController.getEvents);
-app.get('/event', eventController.getEvent);
-app.get('/user/all', userController.getUsers);
-app.get('/user/events', userController.getEvents);
 app.get('/user/resources', userController.getResources);
 app.get('/resource/nearby-businesses', resourceController.getNearbyBusinesses);
 app.get('/resource/all', resourceController.getResources);
