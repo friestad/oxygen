@@ -1,7 +1,9 @@
 import React from "react";
 import "../styles/Resources.scss";
+import '../utils/getNearby';
 
 import { Tabs, Tab, ClickableTile } from "carbon-components-react";
+import getNearby from "../utils/getNearby";
 
 const localBusinesses = [];
 const protestSupporters = [];
@@ -62,10 +64,18 @@ function renderAllResources() {
 }
 
 export class Resources extends React.Component {
+
+	componentDidMount() {
+		getNearby(32.523205, -92.637924).then((resp) => {
+			resp.forEach((element) => {
+				console.log(element.name, element.categories[0], `${element.distance} ft`);
+			})
+		});
+	}
 	render() {
-		addLocalBusiness("CVS", "Convenience Store", "400 feet");
-		addLocalBusiness("Walgreens", "Convenience Store", "670 feet");
-		addLocalBusiness("Some Store", "Convenience Store", "1.2 miles");
+		// addLocalBusiness("CVS", "Convenience Store", "400 feet");
+		// addLocalBusiness("Walgreens", "Convenience Store", "670 feet");
+		// addLocalBusiness("Some Store", "Convenience Store", "1.2 miles");
 
 		addProtestSupporter("John Doe", "Water & Snacks", "distance?");
 		addProtestSupporter("Some Name", "Gatorade", "distance?");
