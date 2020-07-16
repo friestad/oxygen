@@ -14,6 +14,7 @@ import {
 	StructuredListBody,
 } from "carbon-components-react";
 
+import { getEvents } from '../utils/getEvent';
 import {DisplayMapClass} from '../components/DisplayMapClass';
 import {Resources} from './Resources';
 
@@ -151,6 +152,30 @@ function addProtest() {
 }
 
 export class Home extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			protests: []
+		}
+	}
+
+	async componentDidMount() {
+		if (navigator.geolocation) {
+			navigator.geolocation.watchPosition(function (position) {
+			  if (
+				!localStorage.getItem('latitude') ||
+				!localStorage.getItem('longitude')
+			  )
+				window.location.reload();
+	  
+			  localStorage.setItem('latitude', position.coords.latitude.toString());
+			  localStorage.setItem('longitude', position.coords.longitude.toString());
+			});
+		  }
+		const locations = await getEvents(localStorage.getItem('latitude'), localStorage.getItem('longitude'))
+		this.setState({protests: locations});
+		console.log(this.state.protests)
+	}
 	render() {
 		addProtest();
 		addProtest();
@@ -162,12 +187,12 @@ export class Home extends React.Component {
 		return (
 			<>
 				<div className="page-content">
-					<ProtestInformationDisplay />
+					{/* <ProtestInformationDisplay />
 					<DisplayMapClass />
-					<Resources />
-					{/* <div className="protest-list-container">
+					<Resources /> */}
+					<div className="protest-list-container">
 						<RenderProtestList />
-					</div> */}
+					</div>
 				</div>
 			</>
 		);

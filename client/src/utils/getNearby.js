@@ -1,5 +1,5 @@
 export default async function getNearby(latitude, longitude) {
-  const url = `http://localhost:5000/nearby/businesses/?lat=${latitude}&long=${longitude}`;
+  const url = `http://localhost:5000/resource/nearby-businesses/?lat=${latitude}&long=${longitude}`;
   try {
     const response = await fetch(url, {
       method: 'GET',
