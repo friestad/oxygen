@@ -54,7 +54,7 @@ export class ManageEvents extends React.Component {
     
     let newstr = str.replace(/\s/g, '+');
     let a = await getLocation(newstr);
-    let startAddr = a[0].Location.Address.AdditionalData.Label;
+    let startAddr = a[0].Location.Address.Label;
     let start = [
       a[0].Location.DisplayPosition.Longitude,
       a[0].Location.DisplayPosition.Latitude,
@@ -63,7 +63,7 @@ export class ManageEvents extends React.Component {
     let str2 = this.state.addressField2;
     let newstr2 = str2.replace(/\s/g, '+');
     let b = await getLocation(newstr2);
-    let endAddr = b[0].Location.Address.AdditionalData.Label;
+    let endAddr = b[0].Location.Address.Label;
     let end = [
       b[0].Location.DisplayPosition.Longitude,
       b[0].Location.DisplayPosition.Latitude,
