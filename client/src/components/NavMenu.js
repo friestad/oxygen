@@ -46,12 +46,6 @@ export class NavMenu extends React.Component {
 												Home
 											</Link>
 											<Link
-												to="/resources"
-												className="bx--side-nav__link"
-											>
-												Resources
-											</Link>
-											<Link
 												to="/communicate"
 												className="bx--side-nav__link"
 											>

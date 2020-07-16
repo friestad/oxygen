@@ -14,6 +14,9 @@ import {
 	StructuredListBody,
 } from "carbon-components-react";
 
+import {DisplayMapClass} from '../components/DisplayMapClass';
+import {Resources} from './Resources';
+
 function ProtestInformationDisplay() {
 	const eventName = "Sample Protest";
 	const startTime = "09 Aug 2020 @ 3:45p";
@@ -158,12 +161,13 @@ export class Home extends React.Component {
 
 		return (
 			<>
-				<div id="page-content">
-					{/* <ProtestInformationDisplay />
-					<DisplayMapClass /> */}
-					<div className="protest-list-container">
+				<div className="page-content">
+					<ProtestInformationDisplay />
+					<DisplayMapClass />
+					<Resources />
+					{/* <div className="protest-list-container">
 						<RenderProtestList />
-					</div>
+					</div> */}
 				</div>
 			</>
 		);

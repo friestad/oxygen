@@ -6,7 +6,6 @@ import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 
 import { Home } from "./pages/Home";
-import { Resources } from "./pages/Resources";
 import { Communicate } from "./pages/Communicate";
 import { ManageEvents } from "./pages/ManageEvents";
 import { Causes } from "./pages/Causes";
@@ -21,7 +20,6 @@ ReactDOM.render(
 			</div>
 			<Switch>
 				<Route path="/home" component={Home}></Route>
-				<Route path="/resources" component={Resources}></Route>
 				<Route path="/communicate" component={Communicate}></Route>
 				<Route path="/manageEvents" component={ManageEvents}></Route>
 				<Route path="/causes" component={Causes}></Route>
