@@ -1,5 +1,16 @@
 version: '3.3'
 services:
+  client:
+      container_name: client
+      build:
+          context: ./client
+          dockerfile: Dockerfile
+      ports:
+          - 80:80
+      environment:
+          - NODE_ENV=production
+      restart: on-failure
+
   node-server:
     container_name: node-server
     build:
@@ -10,9 +21,3 @@ services:
       - /usr/src/app/server/node_modules
     ports:
       - '5000:5000'
-  mongo:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
