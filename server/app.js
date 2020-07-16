@@ -12,12 +12,14 @@ app.use(bodyParser());
 const eventController = require('./controllers/eventController');
 const userController = require('./controllers/userController');
 const resourceController = require('./controllers/resourceController');
+const locationController = require('./controllers/locationController')
 
 app.get('/event/all/', eventController.getEvents);
 app.get('/event/', eventController.getEvent);
 app.get('/user/all/', userController.getUsers);
 app.get('/user/events/', userController.getEvents);
 app.get('/nearby/businesses/', resourceController.getNearbyBusinesses);
+app.get('/location/address', locationController.searchAddress)
 
 app.post('/event/create-event/', eventController.createEvent);
 app.post('/event/delete-event/', eventController.deleteEvent);
