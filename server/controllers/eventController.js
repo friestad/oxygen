@@ -70,7 +70,7 @@ exports.getEvents = function (req, res) {
             coordinates: [long, lat]
           },
           distanceField: "dist.calculated",
-          //maxDistance: 5000,
+          maxDistance: 5000,
           spherical: true
         }
       }
