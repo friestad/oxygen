@@ -18,7 +18,6 @@ app.get('/event/all/', eventController.getEvents);
 app.get('/event/', eventController.getEvent);
 app.get('/user/all/', userController.getUsers);
 app.get('/user/events/', userController.getEvents);
-app.get('/nearby/businesses/', resourceController.getNearbyBusinesses);
 app.get('/location/address', locationController.searchAddress)
 app.get('/event/all', eventController.getEvents);
 app.get('/event', eventController.getEvent);
