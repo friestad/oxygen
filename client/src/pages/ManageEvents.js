@@ -14,16 +14,21 @@ import {
   AccordionItem,
   ModalWrapper,
   HeaderGlobalAction,
+  DatePicker,
+  DatePickerInput,
+  TimePicker
 } from 'carbon-components-react';
 
 export class ManageEvents extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { addressField: '', addressField2: '', name: '' };
+    this.state = { addressField: '', addressField2: '', name: '', date: '' };
     this.changeAddressField = this.changeAddressField.bind(this);
     this.stringChange = this.stringChange.bind(this);
     this.changeAddressField2 = this.changeAddressField2.bind(this);
     this.changeName = this.changeName.bind(this);
+    this.changeDate = this.changeDate.bind(this);
+    
   }
   changeAddressField(event) {
     console.log(this.state);
@@ -37,11 +42,19 @@ export class ManageEvents extends React.Component {
     console.log(this.state);
     this.setState({ name: event.target.value});
   }
+  changeDate(event) {
+    console.log(this.state);
+    this.setState({ date: event.target.value});
+  }
+  
   async stringChange() {
     let str3 = this.state.name;
+    let str4 = this.state.date;
     let str = this.state.addressField;
+    
     let newstr = str.replace(/\s/g, '+');
     let a = await getLocation(newstr);
+    let startAddr = a[0].Location.Address.AdditionalData.Label;
     let start = [
       a[0].Location.DisplayPosition.Longitude,
       a[0].Location.DisplayPosition.Latitude,
@@ -50,14 +63,15 @@ export class ManageEvents extends React.Component {
     let str2 = this.state.addressField2;
     let newstr2 = str2.replace(/\s/g, '+');
     let b = await getLocation(newstr2);
+    let endAddr = b[0].Location.Address.AdditionalData.Label;
     let end = [
       b[0].Location.DisplayPosition.Longitude,
       b[0].Location.DisplayPosition.Latitude,
 
     
     ];
-    
-	postEvent(str3, "Test Host", start, end, 'July 16, 2020 14:00:00');
+    console.log(a);
+	postEvent(str3, "Test Host", startAddr, endAddr, start, end, str4);
     console.log(start, end);
   }
 
@@ -84,8 +98,7 @@ export class ManageEvents extends React.Component {
                 onChange={this.changeAddressField}
               />
                           
-            </FormGroup>
-            <FormGroup>
+            
                             
               <TextInput
                 helperText='Ending Street Address and City'
@@ -96,9 +109,7 @@ export class ManageEvents extends React.Component {
                 onChange={this.changeAddressField2}
               />
                           
-            </FormGroup>
-                        
-            <FormGroup>
+            
                       <TextInput
                 helperText='Protest Name'
                 id='test2'
@@ -116,7 +127,18 @@ export class ManageEvents extends React.Component {
                 placeholder='Enter any extra information about the protest here.'
                 rows={4}
               />
-                          
+              <TextInput
+                helperText='Schedule Date and Time'
+                id='test2'
+                invalidText='Invalid error message.'
+                labelText='Date and Time'
+                placeholder='January, 01, 2020 00:00:00'
+                onChange={this.changeDate}
+              />  
+
+
+                
+                         
             </FormGroup>
                         
           </ModalWrapper>
