@@ -8,7 +8,7 @@ exports.getNearbyBusinesses = async function (req, res) {
   if (lat === 'undefined' || long === 'undefined') {
     throw new Error('Latitude or longitude is not defined.');
   }
-  const url = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${long}`;
+  const url = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${long}&categories=servicestations,pharmacy,drugstores,convenience`;
   const response = await axios.get(url, {
     headers: {
       Authorization: keys.yelpAPI,
