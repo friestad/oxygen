@@ -9,7 +9,7 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	width: auto;
 }
 
-#page-content {
+.page-content {
 	height: calc(100vh - #{$header-height});
 	width: 100vw;
 	position: relative;
@@ -38,7 +38,7 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 }
 
 .bx--structured-list {
-	min-width: 100%;
+	min-width: 100% !important;
 }
 
 .protest-list-container {
@@ -50,7 +50,7 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	position: absolute;
 	z-index: 5;
 	width: 100%;
-	box-shadow: 0 4px 12px 0px $shadow-color;
+	box-shadow: 0 4px 12px $shadow-color;
 }
 
 .no-protests {
@@ -59,4 +59,23 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.protest-box-item {
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+}
+
+.join-protest-bt {
+	padding: 0px !important; // reset the <Button /> default padding
+	display: flex;
+	justify-content: center !important;
+	max-width: 10%;
+	min-width: 10%;
+}
+
+.bt-text {
+	text-align: center;
+	vertical-align: middle;
 }

@@ -1,4 +1,3 @@
-// src/DisplayMapClass.js
 import * as React from "react";
 import '../styles/DisplayMapClass.scss';
 

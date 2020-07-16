@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/NavMenu.scss';
+import "../styles/NavMenu.scss";
 
 import {
 	HeaderContainer,
@@ -8,11 +8,10 @@ import {
 	HeaderName,
 	SideNav,
 	SideNavItems,
-	SideNavLink,
 	SkipToContent,
 } from "carbon-components-react";
 
-import { ChevronRight32 } from "@carbon/icons-react";
+import { Link } from "react-router-dom";
 
 export class NavMenu extends React.Component {
 	render() {
@@ -40,34 +39,33 @@ export class NavMenu extends React.Component {
 										expanded={isSideNavExpanded}
 									>
 										<SideNavItems>
-											<SideNavLink
-												renderIcon={ChevronRight32}
-												href="javascript:void(0)"
+											<Link
+												to="/home"
+												className="bx--side-nav__link"
 											>
-												Resources
-											</SideNavLink>
-											<SideNavLink
-												renderIcon={ChevronRight32}
-												href="javascript:void(0)"
+												Home
+											</Link>
+											<Link
+												to="/communicate"
+												className="bx--side-nav__link"
 											>
 												Communicate
-											</SideNavLink>
-											<SideNavLink
-												renderIcon={ChevronRight32}
-												href="javascript:void(0)"
+											</Link>
+											<Link
+												to="/manageEvents"
+												className="bx--side-nav__link"
 											>
 												Manage Events
-											</SideNavLink>
-											<SideNavLink
-												renderIcon={ChevronRight32}
-												href="javascript:void(0)"
+											</Link>
+											<Link
+												to="/causes"
+												className="bx--side-nav__link"
 											>
 												Causes
-											</SideNavLink>
+											</Link>
 										</SideNavItems>
 									</SideNav>
 								</Header>
-								{/* <StoryContent /> */}
 							</>
 						)}
 					/>

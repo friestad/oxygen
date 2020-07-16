@@ -1,0 +1,41 @@
+@import "node_modules/carbon-components/scss/globals/scss/styles.scss";
+
+$header-height: 3rem;
+$shadow-color: rgba(0, 0, 0, 0.25);
+
+.page-content {
+	height: calc(100vh - #{$header-height});
+	width: 100vw;
+	position: relative;
+	background-color: $ui-01;
+}
+
+.resource-list-container {
+	position: absolute;
+	width: 100%;
+	height: calc(35vh - #{$header-height});
+	margin-top: 65vh;
+	overflow-y: scroll;
+	z-index: 5;
+	top: 0;
+	background: $ui-01;
+	box-shadow: 0 -4px 12px $shadow-color;
+}
+
+.resource-entry {
+	padding-bottom: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.resource-name {
+	@include carbon--type-style("productive-heading-02");
+}
+
+.resource-body {
+	@include carbon--type-style("body-short-01");
+}
+
+.resource-distance {
+	color: $interactive-01;
+}
