@@ -1,5 +1,6 @@
 import React from "react";
 import { DisplayMapClass } from "../components/DisplayMapClass";
+import getLocation from "../utils/getLocation";
 import {
 Form,
 FormGroup,
@@ -19,21 +20,35 @@ HeaderGlobalAction
 export class ManageEvents extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {addressField: ""};
+		this.state = {addressField: "", addressField2: ""};
 		this.changeAddressField = this.changeAddressField.bind(this)
 		this.stringChange = this.stringChange.bind(this)
+		this.changeAddressField2 = this.changeAddressField2.bind(this)
 	}
 	changeAddressField(event) {
 		console.log(this.state)
 		this.setState({addressField: event.target.value})
 		
 	  }
-	stringChange() {
+	  changeAddressField2(event){
+		console.log(this.state)
+		this.setState({addressField2: event.target.value})
+	  }
+	async stringChange() {
 	let str = this.state.addressField;
 	let newstr = str.replace(/\s/g, '+');
-	console.log(newstr);
+	let a = await getLocation(newstr);
+	let start = [a[0].Location.DisplayPosition.Latitude, a[0].Location.DisplayPosition.Longitude];
 	
+
+	let str2 = this.state.addressField2;
+	let newstr2 = str2.replace(/\s/g, '+');
+	let b = await getLocation(newstr2);
+	let end = [b[0].Location.DisplayPosition.Latitude, b[0].Location.DisplayPosition.Longitude];
+	
+	console.log(start, end);
 	}
+	
     render(){
         return(<div className="page-content"><Form>
             <ModalWrapper
@@ -45,13 +60,24 @@ export class ManageEvents extends React.Component {
 			>
             <FormGroup>
               <TextInput 
-                helperText="Street Address and City"
+                helperText="Starting Street Address and City"
                 id="test2"
                 invalidText="Invalid error message."
                 labelText="Starting Address"
                 placeholder="Starting Address Here"
 				onChange={this.changeAddressField}
-				onSumbit={this.changeAddressField}
+				
+              />
+            </FormGroup>
+<FormGroup>
+              <TextInput 
+                helperText="Ending Street Address and City"
+                id="test2"
+                invalidText="Invalid error message."
+                labelText="Ending Address"
+                placeholder="Ending Address Here"
+				onChange={this.changeAddressField2}
+				
               />
             </FormGroup>
             <FormGroup>
