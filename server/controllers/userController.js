@@ -4,10 +4,12 @@
 */
 
 const User = require('../models/userModel');
+const Event = require('../models/eventModel')
 const mongoose = require('mongoose');
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
+const { createEvent } = require('./eventController');
 
 const mongoDB = keys.mongoURL;
 
@@ -15,6 +17,13 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+
+/*
+  Creates new user
+  JSON keys:
+    username: new user username
+    password: new user's password
+*/
 exports.createUser = function (req, res) {
   User.find({ username: req.body.username }, function (err, users) {
     if (err) {
@@ -24,7 +33,6 @@ exports.createUser = function (req, res) {
         const newUser = new User({
           username: req.body.username,
           passwordHash: CryptoJS.SHA256(req.body.password),
-          events: [],
         });
         delete req.body;
         console.log(newUser);
@@ -44,6 +52,13 @@ exports.createUser = function (req, res) {
   });
 };
 
+
+/*
+  Logins user and gives them a token
+  JSON keys:
+    username: User username
+    password: Password for user
+*/
 exports.login = async function (req, res, next) {
   try {
     let user = await User.findOne({ username: req.body.username }).exec();
@@ -80,3 +95,31 @@ exports.login = async function (req, res, next) {
     res.status(500).send(error);
   }
 };
+
+/*
+  Deletes specified user
+  Query keys:
+    username: user username
+*/
+exports.deleteUser = function(req, res){
+  User.deleteOne({username: req.query.username}, (err) =>{if(err){res.send(err)}});
+  Event.deleteMany({host_username: req.query.username}, (err) => {if(err){res.send(err)}});
+
+  res.json({message: `User ${req.query.username} successfully deleted`});
+}
+
+/*
+  Returns all events a user is hosting
+  Query keys:
+    username: host username
+*/
+exports.getEvents = function(req, res){
+  Event.find({hostUsername: req.username}, (err, events) => {
+    if(err) {res.send(error);}
+    res.send(events);
+  })
+}
+
+exports.getUsers = function(req, res){
+  User.find({}, (err, users) => {res.send(users)});
+}
