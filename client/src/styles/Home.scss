@@ -29,6 +29,10 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 	@include carbon--type-style("body-short-02");
 }
 
+.bx--tile {
+	width: 100%;
+}
+
 .bx--tile-content__below-the-fold {
 	padding-top: 1rem;
 	padding-bottom: 1rem;

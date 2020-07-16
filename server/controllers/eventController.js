@@ -39,6 +39,8 @@ exports.createEvent = function (req, res) {
         let event = new Event({
           name: body.name,
           host_username: body.hostUsername,
+          start_address: body.startAddress,
+          end_address: body.endAddress,
           start_location: body.startLocation,
           end_location: body.endLocation,
           start_time: new Date(body.startTime),
