@@ -1,8 +1,10 @@
-export async function postEvent(eventName, host, startLocation, endLocation, startTime) {
+export async function postEvent(eventName, host, startAddress, endAddress, startLocation, endLocation, startTime) {
   let url = 'http://localhost:5000/event/create-event';
   let requestBody = {
     name: eventName,
     hostUsername: host,
+    startAddress: startAddress,
+    endAddress: endAddress,
     startLocation: {
         type: 'Point',
         coordinates: startLocation
