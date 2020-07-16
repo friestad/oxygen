@@ -1,0 +1,50 @@
+@import "node_modules/carbon-components/scss/globals/scss/styles.scss";
+
+$shadow-color: rgba(0, 0, 0, 0.25);
+
+.left-cause-item {
+	max-width: 30vw;
+	overflow-wrap: break-word;
+}
+
+.reading-list-container {
+	padding: 1rem;
+}
+
+.reading-list-row {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 1rem;
+}
+
+.reading-list-row > * {
+	width: 40vw;
+	height: 20vh;
+	box-shadow: 0 4px 6px 0px $shadow-color;
+	border-bottom: 2px solid blue;
+}
+
+.bx--tile--clickable {
+	height: 100%;
+}
+
+.reading-list-header {
+	@include carbon--type-style("productive-heading-04");
+	padding-bottom: 1rem;
+}
+.article-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
+}
+
+.article-name {
+	@include carbon--type-style("productive-heading-02");
+	color: black;
+}
+
+.article-source {
+	@include carbon--type-style("body-short-01");
+	color: #777;
+}
