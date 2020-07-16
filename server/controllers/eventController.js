@@ -1,8 +1,7 @@
 /*
     Event controller
 */
-
-const Center = require('../util/getCenterArea');
+const User = require('../models/userModel')
 const Event = require('../models/eventModel');
 const keys = require('../config/keys');
 const mongoose = require('mongoose');
@@ -13,30 +12,45 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+/* 
+  Creates an event entry and enters it into the db.
+  JSON keys:
+    name: event name
+    host_username: username of event host
+    start_location: [long, lat] coordinates where event starts
+    end_location: [long, lat] coordinates where event ends
+    center_area: [polygon1[coordinate1[long, lat]], polygon2[], etc]
+      Defines a polygon area that can be used for geofencing.
+    start_time: Date and time event plans to start. Date object
+    participants: List of usernames who plan on participating in the event
+*/
 exports.createEvent = function (req, res) {
-  const body = req.body;
-  const centerArea = Center.getCenterArea(body);
+  let body = req.body;
   let event = new Event({
     name: body.name,
+    host_username: body.hostUsername,
     start_location: body.startLocation,
     end_location: body.endLocation,
-    center_area: {
-      type: "Polygon",
-      coordinates: centerArea
-    },
     start_time: new Date(body.startTime),
     participants: [],
   });
+
   event.save(function (err) {
     if (err) {
       throw err;
     }
-    res.json({
-      message: 'Event created',
-    });
+    console.log("event created")
   });
+
+  res.json({message: `Event ${req.body.name} successfully added to user ${req.body.hostUsername}`});
 };
 
+/* 
+  Returns all events sorted by start time
+  Query keys:
+    long: longitude value
+    lat: latitude value
+*/
 exports.getEvents = function (req, res) {
   const long = Number(req.query.long);
   const lat = Number(req.query.lat);
@@ -45,6 +59,8 @@ exports.getEvents = function (req, res) {
     throw new Error('Latitude or longitude not specified');
   }
 
+  // Limits returned events to those up to 5k meters away.
+  // Sorts by starting time in ascending order.
   Event.aggregate(
     [
       {
@@ -54,13 +70,42 @@ exports.getEvents = function (req, res) {
             coordinates: [long, lat]
           },
           distanceField: "dist.calculated",
+          //maxDistance: 5000,
           spherical: true
         }
       }
-    ], (err, data) => {
+    ], function(err, data) {
       if(err) {
         throw err;
       }
+      data.sort((a, b) => a.start_time - b.start_time);
       res.send(data);
-    });
+    }).sort({field: 'start_time', test: 'asc'});
 };
+
+/*
+  Returns a singular event json.
+  Query keys:
+    name: event name
+    host: event host username
+*/
+exports.getEvent = function(req, res){
+  Event.findOne({name: req.query.name, host_username: req.query.username}, (err, event) => {
+    res.send(event);
+  })
+}
+
+/*
+  Deletes specified event
+  Query keys:
+    username: host username
+    eventname: event name
+*/
+exports.deleteEvent = function(req, res){
+  let event = Event.findOneAndDelete({name: req.query.eventname, host_username: req.query.username}, (err) => {if(err){res.send(err)}});
+  User.findOneAndUpdate({username: req.query.username}, (err, user) => {
+    user.events = user.events.filter((value, index, arr) => value != event._id)
+  });
+
+  res.json({message: `Event ${req.query.eventname} successfully deleted` });
+}

@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "ccead60b-51f1-40dc-82a0-d60a06ad3a5e",
+		"name": "Hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"MrOceanMan\",\r\n    \"password\": \"Faucheux1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lat\": 32.545940,\r\n    \"long\": -92.629436\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/event/all/?lat=32.545940&long=-92.629436",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						"all",
+						""
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "32.545940"
+						},
+						{
+							"key": "long",
+							"value": "-92.629436"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"event1\",\r\n    \"startLocation\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [-92.629579,32.529716]\r\n    },\r\n    \"endLocation\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [-92.597980, 32.532988]\r\n    },\r\n    \"startTime\": \"July 16, 2020 14:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/event",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/user/all/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/user/delete-account/?username=MrOceanMan",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"delete-account",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "MrOceanMan"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"event2\",\r\n    \"hostUsername\": \"MrOceanMan\",\r\n    \"startLocation\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [-92.629579,32.529716]\r\n    },\r\n    \"endLocation\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [-92.597980, 32.532988]\r\n    },\r\n    \"startTime\": \"July 16, 2020 12:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/user/create-event/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"create-event",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/event/delete-event/?username=MrOceanMan&eventname=event2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						"delete-event",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "MrOceanMan"
+						},
+						{
+							"key": "eventname",
+							"value": "event2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
