@@ -10,7 +10,7 @@
     "carbon-components": "10.3.0",
     "carbon-components-react": "7.3.0",
     "carbon-icons": "7.0.7",
-    "node-sass": "4.12.0",
+    "node-sass": "7.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
